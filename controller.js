@@ -18,8 +18,13 @@ async function liveness(img) {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw error;
+    if (error.response && error.response.data) {
+      console.error(error.response.data);
+      return error.response.data.message
+    } else {
+      console.error(error);
+      return error
+    }
   }
 }
 
@@ -41,8 +46,13 @@ async function faceDoc(facetemplateRaw, docImage) {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw error;
+    if (error.response && error.response.data) {
+      console.error(error.response.data);
+      return error.response.data.message
+    } else {
+      console.error(error);
+     return error
+    }
   }
 }
 
