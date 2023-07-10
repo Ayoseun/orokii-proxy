@@ -1,55 +1,49 @@
-require('dotenv').config()
-
-
-
+require('dotenv').config();
+const axios = require('axios');
 
 async function liveness(img) {
   const options = {
     method: 'POST',
     headers: {
-      accept: 'application/json', 
+      accept: 'application/json',
       'content-type': 'application/json',
     },
-    body: JSON.stringify({
-        tokenImage:img
-    
-    }),
-  }
-  var data
-  await fetch('https://facephi.orokii.com/api/selphid/passive-liveness/evaluate/token', options)
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response)
-      data = response
-    })
-    .catch((err) => console.error(err))
+    data: {
+      tokenImage: img,
+    },
+  };
 
-  return data
+  try {
+    const response = await axios.post('https://facephi.orokii.com/api/selphid/passive-liveness/evaluate/token', options);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-async function faceDoc(facetemplateRaw,docImage) {
+async function faceDoc(facetemplateRaw, docImage) {
   const options = {
     method: 'POST',
     headers: {
-      accept: 'application/json', 
+      accept: 'application/json',
       'content-type': 'application/json',
     },
-    body: JSON.stringify({
-      "documentTemplate":docImage,
-      "faceTemplate1":facetemplateRaw
-      }),
-  }
-  var data
-  await fetch('https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template', options)
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response)
-      data = response
-    })
-    .catch((err) => console.error(err))
+    data: {
+      documentTemplate: docImage,
+      faceTemplate1: facetemplateRaw,
+    },
+  };
 
-  return data
+  try {
+    const response = await axios.post('https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template', options);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-
-module.exports = {liveness,faceDoc}
+module.exports = { liveness, faceDoc };

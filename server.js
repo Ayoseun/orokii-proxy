@@ -16,7 +16,7 @@ app.use(cors({
 app.use('/api', apiRoutes)
 
 // Start the server
-const port = 3900 // Specify the desired port number
+const port = 5800 // Specify the desired port number
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
