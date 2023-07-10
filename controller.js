@@ -1,59 +1,48 @@
-require('dotenv').config();
-const axios = require('axios');
+const axios= require('axios');
 
-async function liveness(img) {
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-    },
-    data: {
-      tokenImage: img,
-    },
-  };
 
+
+const liveness = async (img) => {
+  var  responseData;
   try {
-    const response = await axios.post('https://facephi.orokii.com/api/selphid/passive-liveness/evaluate/token', options);
-    console.log(response.data);
-    return response.data;
+    await axios({
+      method: "post",
+      url: `https://facephi.orokii.com/api/selphid/passive-liveness/evaluate/token`,
+      data: {
+        "tokenImage":img
+      },
+     
+  }).then((response) => {
+     responseData = response.data;
+    console.log(responseData)
+    return responseData;
+  })
   } catch (error) {
-    if (error.response && error.response.data) {
-      console.error(error.response.data);
-      return error.response.data.message
-    } else {
-      console.error(error);
-      return error
-    }
+    console.log(error)
   }
+  return responseData;
 }
 
-async function faceDoc(facetemplateRaw, docImage) {
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-    },
-    data: {
-      documentTemplate: docImage,
-      faceTemplate1: facetemplateRaw,
-    },
-  };
+const faceDoc = async (facetemplateRaw, docImage) => {
 
+  var  responseData;
   try {
-    const response = await axios.post('https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template', options);
-    console.log(response.data);
-    return response.data;
+    await axios({
+      method: "post",
+      url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template',
+      data: {
+        "tokenImage":img
+      },
+     
+  }).then((response) => {
+     responseData = response.data;
+    console.log(responseData)
+    return responseData;
+  })
   } catch (error) {
-    if (error.response && error.response.data) {
-      console.error(error.response.data);
-      return error.response.data.message
-    } else {
-      console.error(error);
-     return error
-    }
+    console.log(error)
   }
-}
+  return responseData;
+};
 
-module.exports = { liveness, faceDoc };
+module.exports= { liveness, faceDoc };
