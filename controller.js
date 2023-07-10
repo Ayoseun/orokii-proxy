@@ -31,7 +31,8 @@ const faceDoc = async (facetemplateRaw, docImage) => {
       method: "post",
       url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template',
       data: {
-        "tokenImage":img
+        "documentTemplate":docImage,
+        "faceTemplate1":facetemplateRaw
       },
      
   }).then((response) => {
