@@ -8,7 +8,7 @@ const apiRoutes = require('./routers')
 app.use(express.json({ limit: '10mb' }));
 
 app.use(cors({
-    origin: 'http://localhost:4600',
+    origin: 'http://127.0.0.1:4600',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   }));
