@@ -23,15 +23,16 @@ const liveness = async (img) => {
   return responseData;
 }
 
+
 const faceDoc = async (facetemplateRaw, docImage) => {
 
   var  responseData;
   try {
     await axios({
       method: "post",
-      url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/document/face-template',
+      url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/image/template ',
       data: {
-        "documentTemplate":docImage,
+        "image1":docImage,
         "faceTemplate1":facetemplateRaw
       },
      
