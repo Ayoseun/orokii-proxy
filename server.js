@@ -7,11 +7,8 @@ const apiRoutes = require('./routers')
 // Middleware to parse JSON request body
 app.use(express.json({ limit: '10mb' }));
 
-app.use(cors({
-    origin: 'http://127.0.0.1:4600',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  }));
+// Enable CORS for any website
+app.use(cors());
 // Use the routes
 app.use('/api', apiRoutes)
 

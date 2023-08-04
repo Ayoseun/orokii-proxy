@@ -24,7 +24,7 @@ const liveness = async (img) => {
 }
 
 
-const faceDoc = async (facetemplateRaw, docImage) => {
+const faceDoc = async (image1,faceTemplate1) => {
 
   var  responseData;
   try {
@@ -32,8 +32,8 @@ const faceDoc = async (facetemplateRaw, docImage) => {
       method: "post",
       url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/image/template ',
       data: {
-        "image1":docImage,
-        "faceTemplate1":facetemplateRaw
+        "image1": image1,
+        "faceTemplate1":faceTemplate1
       },
      
   }).then((response) => {

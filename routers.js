@@ -24,7 +24,7 @@ router.post('/liveness', async (req, res) => {
 router.post('/facedoc', async (req, res) => {
  
   try {
-    const success = await faceDoc(req.body.tokenImage,req.body.idImage);
+    const success = await faceDoc(req.body.image1,req.body.faceTemplate1);
  
 
     res.send(success);
