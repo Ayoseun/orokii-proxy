@@ -30,7 +30,7 @@ const faceDoc = async (image1,faceTemplate1) => {
   try {
     await axios({
       method: "post",
-      url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/image/template ',
+      url: 'https://facephi.orokii.com/api/selphid/authenticate-facial/image/template',
       data: {
         "image1": image1,
         "faceTemplate1":faceTemplate1
